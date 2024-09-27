@@ -23,13 +23,17 @@ CONTAINER ID   IMAGE                       COMMAND                  CREATED     
 
 `fisa`라는 데이터베이스를 `mysqldump`로 백업하겠습니다.
 
-⚠️ **트러블슈팅 1**
+⚠️ **트러블슈팅**
 
 ```bash
 $ docker exec mysqldb mysqldump -u root -p fisa > /home/username/step06Compose/dump.sql
 ```
 
-`Access Denied` 오류가 발생하는 경우, `-p` 옵션 뒤에 **비밀번호를 명시적으로** 추가해야 합니다. `-p` 옵션 뒤에 공백 없이 비밀번호를 넣어야 한다는 점에 유의하세요.
+원래 의도라면 Enter password: 이후 계정의 비밀번호를 입력해야 하지만, Access Denied 오류가 발생하였습니다.
+
+보안상의 이슈가 발생하긴 하지만, `-p` 옵션 뒤에 명시적으로 비밀번호를 추가하여 접속이 가능합니다. 
+
+주의할 점은 p 뒤에 띄어쓰기 없이 바로 비밀번호를 작은따옴표(`’`) 으로 감싸야 한다는 점입니다.
 
 ```bash
 $ docker exec mysqldb mysqldump -u root -p'root' fisa > /home/username/step06Compose/dump.sql
